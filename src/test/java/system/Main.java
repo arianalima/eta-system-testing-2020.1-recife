@@ -1,9 +1,7 @@
 package system;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.function.Executable;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
@@ -17,6 +15,8 @@ import system.helpers.DriverManager;
 import javax.swing.*;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class Main {
@@ -98,7 +98,7 @@ public class Main {
 
     @Test
     void atividade18(){
-        this.driver.get("https://www.automationpractice.com");
+        this.driver.get("http://www.automationpractice.com");
         this.driver.manage().timeouts().implicitlyWait(1, TimeUnit.MINUTES);
         try{
             this.driver.findElement(By.cssSelector("qualquer-coisa-aleatoria"));
@@ -109,7 +109,7 @@ public class Main {
 
     @Test
     void atividade19() {
-        this.driver.get("https://www.automationpractice.com");
+        this.driver.get("http://www.automationpractice.com");
         this.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         try{
             this.driver.findElement(By.cssSelector("#block_top_menu .submenu-container"));
@@ -120,7 +120,7 @@ public class Main {
 
     @Test
     void atividade20(){
-        this.driver.get("https://www.automationpractice.com");
+        this.driver.get("http://www.automationpractice.com");
         this.driver.manage().timeouts().implicitlyWait(5, TimeUnit.MINUTES);
         try{
             this.driver.findElement(By.cssSelector("#block_top_menu .menu-content"));
@@ -131,7 +131,7 @@ public class Main {
 
     @Test
     void atividade21(){
-        this.driver.get("https://www.automationpractice.com");
+        this.driver.get("http://www.automationpractice.com");
         Actions actions = new Actions(this.driver);
 
         WebElement womanMenu = this.driver.findElement(By.cssSelector("#block_top_menu a[title='Women']"));
