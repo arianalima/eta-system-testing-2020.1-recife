@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import system.helpers.DriverManager;
+import system.pages.selenium_easy.MainPage;
+import system.pages.selenium_easy.TableSortSearchPage;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -29,7 +31,9 @@ public class Main {
 
     @Test
     void atividade13(){
-        this.driver.get("https://seleniumeasy.com/test/input-form-demo.html");
+        MainPage mainPage = new MainPage();
+        mainPage.accessPage("https://seleniumeasy.com/test/input-form-demo.html");
+        Assertions.assertEquals("Selenium Easy", mainPage.getSiteName());
         List<WebElement> inputFields = this.driver.findElements(By.cssSelector("#contact_form .form-group input"));
         for (int i = 0; i < inputFields.size(); i++){
             inputFields.get(i).sendKeys("dummy");
@@ -197,6 +201,21 @@ public class Main {
         }
         WebElement row = this.driver.findElement(By.cssSelector("#example tbody tr:nth-child(1)"));
         Assertions.assertTrue(row.getText().contains("Cox"));
+    }
+
+    @Test
+    void atividade28(){
+        MainPage mainPage = new MainPage();
+        mainPage.accessPage("https://www.seleniumeasy.com/test");
+        mainPage.closeAdd();
+        TableSortSearchPage tableSortSearchPage = mainPage.getLeftNavMenu().navigateToTableSortSearch();
+        tableSortSearchPage.searchText("London");
+        List<WebElement> tableRows = tableSortSearchPage.getTableRows();
+        Assertions.assertEquals(7, tableSortSearchPage.getTableRowAmount());
+        for (WebElement row:tableRows) {
+            Assertions.assertTrue(row.getText().contains("London"));
+            System.out.println(row.getText());
+        }
 
     }
 }
