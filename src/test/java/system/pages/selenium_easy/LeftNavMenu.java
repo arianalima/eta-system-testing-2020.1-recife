@@ -28,7 +28,7 @@ public class LeftNavMenu{
         return new TableSortSearchPage();
     }
 
-    public void clickSubMenuButton(By menuBtn, By subMenuBtn){
+    private void clickSubMenuButton(By menuBtn, By subMenuBtn){
         WebElement leftNavMenu = this.driver.findElement(leftNavMenuSelector);
         WebElement btnMenu = leftNavMenu.findElement(menuBtn);
         btnMenu.click();

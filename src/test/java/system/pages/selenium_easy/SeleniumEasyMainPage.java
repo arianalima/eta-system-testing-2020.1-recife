@@ -5,13 +5,13 @@ import system.helpers.DriverManager;
 import system.pages.BasePage;
 
 
-public class MainPage extends BasePage {
+public class SeleniumEasyMainPage extends BasePage {
     private WebDriver driver;
 
     private By siteName = By.cssSelector("#site-name");
     private By closeAdd = By.cssSelector("#at-cv-lightbox-close");
 
-    public MainPage(){
+    public SeleniumEasyMainPage(){
         this.driver = DriverManager.getDriver();
     }
 

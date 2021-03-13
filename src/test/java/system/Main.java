@@ -8,7 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import system.helpers.DriverManager;
-import system.pages.selenium_easy.MainPage;
+import system.pages.automation_practice.AutomationPracticeMainPage;
+import system.pages.selenium_easy.SeleniumEasyMainPage;
 import system.pages.selenium_easy.TableSortSearchPage;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class Main {
 
     @Test
     void atividade13(){
-        MainPage mainPage = new MainPage();
+        SeleniumEasyMainPage mainPage = new SeleniumEasyMainPage();
         mainPage.accessPage("https://seleniumeasy.com/test/input-form-demo.html");
         Assertions.assertEquals("Selenium Easy", mainPage.getSiteName());
         List<WebElement> inputFields = this.driver.findElements(By.cssSelector("#contact_form .form-group input"));
@@ -205,7 +206,7 @@ public class Main {
 
     @Test
     void atividade28(){
-        MainPage mainPage = new MainPage();
+        SeleniumEasyMainPage mainPage = new SeleniumEasyMainPage();
         mainPage.accessPage("https://www.seleniumeasy.com/test");
         mainPage.closeAdd();
         TableSortSearchPage tableSortSearchPage = mainPage.getLeftNavMenu().navigateToTableSortSearch();
@@ -216,6 +217,13 @@ public class Main {
             Assertions.assertTrue(row.getText().contains("London"));
             System.out.println(row.getText());
         }
+    }
 
+    @Test
+    void atividade29(){
+        AutomationPracticeMainPage mainPage = new AutomationPracticeMainPage();
+        mainPage.accessPage("http://www.automationpractice.com");
+        mainPage.navigateToWomanPage();
+        Assertions.assertEquals("http://automationpractice.com/index.php?id_category=3&controller=category", mainPage.getUrl());
     }
 }

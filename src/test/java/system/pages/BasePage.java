@@ -18,4 +18,7 @@ public class BasePage {
         this.driver.get(url);
     }
 
+    public String getUrl() {
+        return this.driver.getCurrentUrl();
+    }
 }
