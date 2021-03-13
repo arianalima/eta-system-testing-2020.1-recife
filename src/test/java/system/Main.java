@@ -1,22 +1,17 @@
 package system;
 
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.function.Executable;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import system.helpers.DriverManager;
 
-import javax.swing.*;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class Main {
@@ -35,7 +30,7 @@ public class Main {
     @Test
     void atividade13(){
         this.driver.get("https://seleniumeasy.com/test/input-form-demo.html");
-        List<WebElement> inputFields = driver.findElements(By.cssSelector("#contact_form .form-group input"));
+        List<WebElement> inputFields = this.driver.findElements(By.cssSelector("#contact_form .form-group input"));
         for (int i = 0; i < inputFields.size(); i++){
             inputFields.get(i).sendKeys("dummy");
         }
@@ -153,5 +148,54 @@ public class Main {
         this.driver.findElement(By.cssSelector("#description")).sendKeys("Description");
         this.driver.findElement(By.cssSelector("#btn-submit")).click();
         DriverManager.getDriverWait().until(ExpectedConditions.textToBe(By.cssSelector("#submit-control"), "Form submited Successfully!"));
+    }
+
+    @Test
+    void atividade23(){
+        this.driver.get("https://seleniumeasy.com/test/input-form-demo.html");
+        List<WebElement> inputFields = driver.findElements(By.cssSelector("#contact_form .form-group input"));
+        for (int i = 0; i < inputFields.size(); i++){
+            inputFields.get(i).sendKeys("dummy");
+        }
+        String state = this.driver.findElement(By.cssSelector("select[name='state'] > option + option")).getText();
+        this.driver.findElement(By.cssSelector("select[name='state']")).sendKeys(state);
+        this.driver.findElement(By.cssSelector("input[name='hosting']")).click();
+        this.driver.findElement(By.cssSelector("textarea[name='comment']")).sendKeys("dummy");
+        this.driver.findElement(By.cssSelector(".form-group:last-child button")).click();
+        WebElement nameLabel = this.driver.findElement(By.cssSelector(".control-label:first-child"));
+        Assertions.assertEquals("First Name", nameLabel.getText());
+    }
+
+    @Test
+    void atividade24(){
+        this.driver.get("https://www.seleniumeasy.com/test/table-search-filter-demo.html");
+        String row = this.driver.findElement(By.cssSelector("#task-table tbody tr:not(first-child)")).getText();
+        Assertions.assertEquals("1 Wireframes John Smith in progress", row);
+    }
+
+    @Test
+    void atividade25(){
+        this.driver.get("https://www.seleniumeasy.com/test/table-search-filter-demo.html");
+        String header = this.driver.findElement(By.cssSelector("#task-table thead th:nth-child(3)")).getText();
+        System.out.println(header);
+        List<WebElement> column = this.driver.findElements(By.cssSelector("#task-table tbody td:nth-child(3)"));
+        for (WebElement row : column){
+            System.out.println(row.getText());
+        }
+        Assertions.assertEquals(7, column.size());
+    }
+
+    @Test
+    void atividade26(){
+        this.driver.get("https://www.seleniumeasy.com/test");
+        try {
+            this.driver.findElement(By.cssSelector("#at-cv-lightbox-close")).click();
+        } finally {
+            this.driver.findElement(By.cssSelector("ul[class='nav navbar-nav'] > li:nth-child(3)")).click();
+            this.driver.findElement(By.cssSelector("ul[class='dropdown-menu'] > li > a[href*='sort']")).click();
+        }
+        WebElement row = this.driver.findElement(By.cssSelector("#example tbody tr:nth-child(1)"));
+        Assertions.assertTrue(row.getText().indexOf("Cox")>0);
+
     }
 }
