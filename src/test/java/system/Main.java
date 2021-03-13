@@ -191,11 +191,12 @@ public class Main {
         try {
             this.driver.findElement(By.cssSelector("#at-cv-lightbox-close")).click();
         } finally {
-            this.driver.findElement(By.cssSelector("ul[class='nav navbar-nav'] > li:nth-child(3)")).click();
-            this.driver.findElement(By.cssSelector("ul[class='dropdown-menu'] > li > a[href*='sort']")).click();
+            WebElement btnTableMenu = this.driver.findElement(By.cssSelector("#navbar-brand-centered > .nav > li:nth-child(3)"));
+            btnTableMenu.click();
+            btnTableMenu.findElement(By.cssSelector(".dropdown-menu > li:nth-child(4)")).click();
         }
         WebElement row = this.driver.findElement(By.cssSelector("#example tbody tr:nth-child(1)"));
-        Assertions.assertTrue(row.getText().indexOf("Cox")>0);
+        Assertions.assertTrue(row.getText().contains("Cox"));
 
     }
 }
