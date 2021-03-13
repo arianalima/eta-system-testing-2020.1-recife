@@ -6,10 +6,17 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import system.helpers.DriverManager;
 
+import javax.swing.*;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class Main {
@@ -87,5 +94,64 @@ public class Main {
         System.out.println(input_name.isDisplayed());
 
         System.out.println(input_name.isEnabled());
+    }
+
+    @Test
+    void atividade18(){
+        this.driver.get("https://www.automationpractice.com");
+        this.driver.manage().timeouts().implicitlyWait(1, TimeUnit.MINUTES);
+        try{
+            this.driver.findElement(By.cssSelector("qualquer-coisa-aleatoria"));
+        }catch (WebDriverException e){
+            System.out.println(e.getClass());
+        }
+    }
+
+    @Test
+    void atividade19() {
+        this.driver.get("https://www.automationpractice.com");
+        this.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        try{
+            this.driver.findElement(By.cssSelector("#block_top_menu .submenu-container"));
+        }catch (WebDriverException e){
+            System.out.println(e.getClass());
+        }
+    }
+
+    @Test
+    void atividade20(){
+        this.driver.get("https://www.automationpractice.com");
+        this.driver.manage().timeouts().implicitlyWait(5, TimeUnit.MINUTES);
+        try{
+            this.driver.findElement(By.cssSelector("#block_top_menu .menu-content"));
+        }catch (WebDriverException e){
+            System.out.println(e.getClass());
+        }
+    }
+
+    @Test
+    void atividade21(){
+        this.driver.get("https://www.automationpractice.com");
+        Actions actions = new Actions(this.driver);
+
+        WebElement womanMenu = this.driver.findElement(By.cssSelector("#block_top_menu a[title='Women']"));
+        By elementNotVisibleSelector = By.cssSelector("#block_top_menu .submenu-container");
+        try{
+            System.out.println(this.driver.findElement(elementNotVisibleSelector).isDisplayed());
+            actions.moveToElement(womanMenu).build().perform();
+            DriverManager.getDriverWait().until(ExpectedConditions.visibilityOfElementLocated(elementNotVisibleSelector));
+            System.out.println(this.driver.findElement(elementNotVisibleSelector).isDisplayed());
+        }catch (WebDriverException e){
+            System.out.println(e.getClass());
+        }
+    }
+
+    @Test
+    void atividade22(){
+        this.driver.get("https://www.seleniumeasy.com/test/ajax-form-submit-demo.html");
+        this.driver.findElement(By.cssSelector("#title")).sendKeys("Name");
+        this.driver.findElement(By.cssSelector("#description")).sendKeys("Description");
+        this.driver.findElement(By.cssSelector("#btn-submit")).click();
+        DriverManager.getDriverWait().until(ExpectedConditions.textToBe(By.cssSelector("#submit-control"), "Form submited Successfully!"));
     }
 }
