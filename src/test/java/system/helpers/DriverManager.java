@@ -13,7 +13,11 @@ public class DriverManager {
     private static ChromeOptions options;
 
     public static WebDriver getDriver(){
-        System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
+        String chromeDriverExtension = "";
+        if (System.getProperty("os.name").startsWith("Windows")){
+            chromeDriverExtension = ".exe";
+        }
+        System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH + chromeDriverExtension);
         if (driver == null){
             options = new ChromeOptions();
 //            options.addArguments("headless");
