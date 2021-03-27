@@ -1,5 +1,7 @@
 package system.stepDefinitions;
 
+import java.util.List;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -32,8 +34,11 @@ public class Atividade32 {
     }
 
     @Given("O(s) campo(s) obrigatório(s) estão/está preenchido(s)")
-    public void osCamposObrigatóriosEstãoPreenchidos() {
-        System.out.println("Step definition sem argumento\n");
+    public void osCamposObrigatóriosEstãoPreenchidos(List<String> dados ) {
+        System.out.println(dados.get(0).substring(0,5));
+        System.out.println(dados.get(1).substring(0,5));
+        System.out.println(Integer.parseInt(dados.get(2)) + 100);
+        System.out.println(dados.get(3).substring(0,5));
     }
 
     @Then("O cadastro é realizado")

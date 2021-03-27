@@ -8,8 +8,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/java/system/resources/features",
         glue = "system/stepDefinitions",
-        tags = "@atividade30",
-        monochrome = true,
+        tags = "@debug",
+        monochrome = false,
         plugin = "pretty",
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )

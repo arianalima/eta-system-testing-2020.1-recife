@@ -11,12 +11,18 @@ Feature: Atividade 30
     Then  Os campos obrigatórios ficarão sinalizados
     And   O cadastro não é realizado
 
+  @debug
   Scenario: Verificar que é possível cadastrar usuário
     Given Os campos obrigatórios estão preenchidos
+    |Mariana             |
+    |marianmelo@email.com|
+    |26                  |
+    |12344               |
     When  O usuário clicar no botão cadastrar
     Then  O cadastro é realizado
     And   Uma mensagem de sucesso é exibida
 
+  
   Scenario: Verificar que a senha é válida
     Given O campo senha é preenchido com "a1b2c3d4"
     When  O usuário clicar no botão cadastrar
