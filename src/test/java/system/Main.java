@@ -22,12 +22,12 @@ public class Main {
 
     @BeforeAll
     void setup(){
-       // this.driver = DriverManager.getDriver();
+        this.driver = DriverManager.getDriver();
     }
 
     @AfterAll
     void tearDown(){
-        //DriverManager.endSession();
+        DriverManager.endSession();
     }
 
     @Test

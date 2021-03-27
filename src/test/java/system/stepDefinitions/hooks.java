@@ -1,4 +1,4 @@
-package system;
+package system.stepDefinitions;
 
 import system.helpers.DriverManager;
 import io.cucumber.java.After;
