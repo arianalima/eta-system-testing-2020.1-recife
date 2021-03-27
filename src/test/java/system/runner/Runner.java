@@ -5,6 +5,13 @@ import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@CucumberOptions()
+@CucumberOptions(
+        features = "src/test/java/system/resources/features",
+        glue = "system/stepDefinitions",
+        tags = "@atividade30",
+        monochrome = true,
+        plugin = "pretty",
+        snippets = CucumberOptions.SnippetType.CAMELCASE
+)
 public class Runner {
 }
