@@ -26,6 +26,7 @@ public class TableSortSearchPage extends BasePage {
 
     public void searchText(String text){
         this.driverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(allTableRowSelector));
+        this.driverWait.until(ExpectedConditions.visibilityOfElementLocated(searchInputSelector));
         this.driver.findElement(searchInputSelector).sendKeys(text);
         driverWait.until(ExpectedConditions.textToBePresentInElementLocated(messageShowingSelector, "filtered"));
     }
