@@ -1,6 +1,8 @@
 package system.pages;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
 import system.helpers.DriverManager;
 
 public class BasePage {
@@ -21,4 +23,5 @@ public class BasePage {
     public String getUrl() {
         return this.driver.getCurrentUrl();
     }
+
 }

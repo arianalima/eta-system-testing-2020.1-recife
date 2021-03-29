@@ -12,8 +12,8 @@ public class hooks {
         DriverManager.getDriver();
     }
 
-    @After
-    public void afterScenario(){
-        DriverManager.endSession();
-    }
+    // @After
+    // public void afterScenario(){
+    //     DriverManager.endSession();
+    // }
 }
